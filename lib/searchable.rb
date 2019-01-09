@@ -1,5 +1,4 @@
 require_relative 'db_connection'
-require_relative 'sql_object'
 require 'byebug'
 
 module Searchable
@@ -17,8 +16,4 @@ module Searchable
     SQL
     items.map{|item| self.new(item)}
   end
-end
-
-class SQLObject
-  extend Searchable
 end

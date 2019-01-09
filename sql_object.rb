@@ -1,8 +1,31 @@
-require_relative 'db_connection'
+require_relative './lib/db_connection'
+require_relative './lib/associatable'
+require_relative './lib/searchable'
 require 'active_support/inflector'
 require 'byebug'
 
 class SQLObject
+  extend Searchable
+  extend Associatable
+
+  def initialize(params = {})
+    params.each do |column_name, value|
+      symbol = column_name.to_sym
+      raise "unknown attribute '#{column_name}'" unless self.class.columns.include?(symbol)
+      self.send("#{column_name}=", value)
+    end
+  end
+
+  def attributes
+    @attributes ||= {}
+  end
+
+  def attribute_values
+    self.class.columns.map do |attribute_key|
+      self.send(attribute_key)
+    end
+  end
+
   def self.columns
     return @columns unless @columns.nil?
     query = DBConnection.execute2(<<-SQL)
@@ -70,24 +93,6 @@ class SQLObject
         id = ?
     SQL
     item.empty? ? nil : self.parse_all(item)[0]
-  end
-
-  def initialize(params = {})
-    params.each do |column_name, value|
-      symbol = column_name.to_sym
-      raise "unknown attribute '#{column_name}'" unless self.class.columns.include?(symbol)
-      self.send("#{column_name}=", value)
-    end
-  end
-
-  def attributes
-    @attributes ||= {}
-  end
-
-  def attribute_values
-    self.class.columns.map do |attribute_key|
-      self.send(attribute_key)
-    end
   end
 
   def insert
