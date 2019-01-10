@@ -50,14 +50,12 @@ LazyRecord is an object-relational mapper inspired by Active Record. It connects
 
 ```ruby
 Dog.all # returns an array of dogs
-human1 = Human.find(1) # returns #<Human:0x00007fd5e72e0850 
-                       #      @attributes={:id=>1, :fname=>"Lily", :lname=>"Andrews"}>
+human1 = Human.find(1) # returns #<Human:0x00007fd5e72e0850 @attributes={:id=>1, :fname=>"Lily", :lname=>"Andrews"}>
 human1.dogs # returns an array of dogs belonging to the human
 
 bone_toy = Toy.where(name: 'Bone').first # returns #<Toy:0x00007fd5e8af99a0 
                                          #      @attributes={:id=>1, :name=>"Bone", :dog_id=>4}>
-bone_toy.dog # returns #<Dog:0x00007fd5e8a9c278 
-             #      @attributes={:id=>4, :name=>"Charlie", :owner_id=>3}>
+bone_toy.dog # returns #<Dog:0x00007fd5e8a9c278 @attributes={:id=>4, :name=>"Charlie", :owner_id=>3}>
 
 brownie = Dog.new(name: 'Brownie', owner_id: 2) # returns => #<Dog:0x00007fd5e7839ae0 
                                                 #      @attributes={:name=>"Brownie", :owner_id=>2}>
