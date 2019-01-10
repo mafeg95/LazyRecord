@@ -49,11 +49,7 @@ LazyRecord is an object-relational mapper inspired by Active Record. It connects
 ## Inspiration
 
 `Dog.all # returns an array of dogs
- human1 = Human.find(1) # #<Human:0x00007fd5e72e0850 @attributes={:id=>1, :fname=>"Lily", :lname=>"Andrews"}>
- 
-
-
-`
+ human1 = Human.find(1) # #<Human:0x00007fd5e72e0850 @attributes={:id=>1, :fname=>"Lily", :lname=>"Andrews"}>`
 
 ## Next Steps
 
