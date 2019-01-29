@@ -72,6 +72,6 @@ Human.find(2) # returns #<Human:0x00007fd5e7318250
 
 ## Next Steps
 
-* Create the posibility to have `has_many_through` relations
-* Create the posibility to prevent n+1 queries
-* Create the posibility to select specific fields instead of selecting every field
+* Create the possibility to have `has_many_through` relations
+* Create the possibility to prevent n+1 queries
+* Create the possibility to select specific fields instead of selecting every field
